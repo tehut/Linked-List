@@ -78,13 +78,25 @@ class LinkedList
 
   # method that returns the length of the singly linked list
   def length
-    puts "Not implemented"
+    counter = 0
+    current_node = @head
+    while current_node
+      counter += 1
+      current_node = current_node.next
+      end
+    puts counter
+    
   end
 
   # method to return the value of the nth element from the beginning
   # assume indexing starts at 0 while counting to n
   def find_nth_from_beginning(n)
-    puts "Not implemented"
+    current_node = @head
+    n.times do
+      current_node = current_node.next
+      end
+    return current_node.data
+    
   end
 
   # method to insert a new node with specific data value, assuming the linked
@@ -159,20 +171,24 @@ my_linked_list.search(5)
 my_linked_list.search(4)
 my_linked_list.search(3)
 
+print "max: "
 my_linked_list.find_max
+print "min: "
 my_linked_list.find_min
+print "length: "
+my_linked_list.length
 # # print all elements
 # puts "Printing elements in the linked list:"
 # my_linked_list.visit
 
 # # Find the value at the nth node
-# puts "Confirming values in the linked list using find_nth_from_beginning method."
-# value = my_linked_list.find_nth_from_beginning(2)
-# puts "BUG: Value at index 2 should be 5 and is #{value}" if value != 5
-# value = my_linked_list.find_nth_from_beginning(1)
-# puts "BUG: Value at index 1 should be 3 and is #{value}" if value != 3
-# value = my_linked_list.find_nth_from_beginning(0)
-# puts "BUG: Value at index 0 should be 1 and is #{value}" if value != 1
+puts "Confirming values in the linked list using find_nth_from_beginning method."
+value = my_linked_list.find_nth_from_beginning(2)
+puts "BUG: Value at index 2 should be 5 and is #{value}" if value != 5
+value = my_linked_list.find_nth_from_beginning(1)
+puts "BUG: Value at index 1 should be 3 and is #{value}" if value != 3
+value = my_linked_list.find_nth_from_beginning(0)
+puts "BUG: Value at index 0 should be 1 and is #{value}" if value != 1
 
 # # print all elements
 # puts "Printing elements in the linked list:"
