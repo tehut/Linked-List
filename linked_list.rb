@@ -53,7 +53,14 @@ class LinkedList
   # method to return the max value in the linked list
   # returns the data value and not the node
   def find_max
-    puts "Not implemented"
+    max = 0
+    current_node = @head
+
+    while current_node
+      max = current_node.data if current_node.data > max
+      current_node = current_node.next
+    end
+    puts max
   end
 
   # method to return the min value in the linked list
@@ -140,10 +147,12 @@ my_linked_list.insert(5)
 my_linked_list.insert(3)
 my_linked_list.insert(1)
 
+# Search for the methods created in the last exercise
 my_linked_list.search(5)
 my_linked_list.search(4)
 my_linked_list.search(3)
 
+my_linked_list.find_max
 # # print all elements
 # puts "Printing elements in the linked list:"
 # my_linked_list.visit
