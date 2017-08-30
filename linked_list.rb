@@ -66,7 +66,14 @@ class LinkedList
   # method to return the min value in the linked list
   # returns the data value and not the node
   def find_min
-    puts "Not implemented"
+    current_node = @head
+       min = current_node.data
+
+    while current_node
+      max = current_node.data if current_node.data < min
+      current_node = current_node.next
+    end
+    puts min
   end
 
   # method that returns the length of the singly linked list
@@ -153,6 +160,7 @@ my_linked_list.search(4)
 my_linked_list.search(3)
 
 my_linked_list.find_max
+my_linked_list.find_min
 # # print all elements
 # puts "Printing elements in the linked list:"
 # my_linked_list.visit
