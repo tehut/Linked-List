@@ -60,7 +60,7 @@ class LinkedList
       max = current_node.data if current_node.data > max
       current_node = current_node.next
     end
-    puts max
+    return max
   end
 
   # method to return the min value in the linked list
@@ -73,7 +73,7 @@ class LinkedList
       max = current_node.data if current_node.data < min
       current_node = current_node.next
     end
-    puts min
+    return min
   end
 
   # method that returns the length of the singly linked list
@@ -84,7 +84,7 @@ class LinkedList
       counter += 1
       current_node = current_node.next
       end
-    puts counter
+    return counter
     
   end
 
@@ -102,17 +102,48 @@ class LinkedList
   # method to insert a new node with specific data value, assuming the linked
   # list is sorted in ascending order
   def insert_ascending(value)
-    puts "Not implemented"
+    new_node = Node.new(value)
+    current_node = @head
+    if new_node.data > current_node.data
+      new_node.next = current_node
+      @head = new_node
+      else
+        while current_node do
+        last_node = current_node
+        current_node = current_node.next
+          if new_node.data > current_node.data 
+            last_node.next = new_node
+            new_node.next = current_node
+          end
+
+        end
+    end
+      
+    
   end
 
   # method to print all the values in the linked list
   def visit
-    puts "Not implemented"
+    current_node = @head
+    while current_node do
+      puts current_node.data
+      current_node = current_node.next
+    end
+
   end
 
   # method to delete the first node found with specified value
   def delete(value)
-    puts "Not implemented"
+    current_node = @head
+   previous_node = ""
+      until current_node.data == value
+        previous_node = current_node
+        current_node = current_node.next
+      end
+
+      current_node= current_node.next
+      previous_node.next = current_node
+      
   end
 
   # method to reverse the singly linked list
@@ -166,10 +197,7 @@ my_linked_list.insert(5)
 my_linked_list.insert(3)
 my_linked_list.insert(1)
 
-# Search for the methods created in the last exercise
-my_linked_list.search(5)
-my_linked_list.search(4)
-my_linked_list.search(3)
+
 
 print "max: "
 my_linked_list.find_max
@@ -177,10 +205,10 @@ print "min: "
 my_linked_list.find_min
 print "length: "
 my_linked_list.length
-# # print all elements
-# puts "Printing elements in the linked list:"
-# my_linked_list.visit
 
+# Print all elements
+puts "Printing elements in the linked list:"
+my_linked_list.visit
 # # Find the value at the nth node
 puts "Confirming values in the linked list using find_nth_from_beginning method."
 value = my_linked_list.find_nth_from_beginning(2)
@@ -190,52 +218,46 @@ puts "BUG: Value at index 1 should be 3 and is #{value}" if value != 3
 value = my_linked_list.find_nth_from_beginning(0)
 puts "BUG: Value at index 0 should be 1 and is #{value}" if value != 1
 
-# # print all elements
-# puts "Printing elements in the linked list:"
-# my_linked_list.visit
+# print all elements
+puts "Printing elements in the linked list:"
+my_linked_list.visit
+
+# Insert ascending
+puts "Adding 4 in ascending order."
+my_linked_list.insert_ascending(4)
+# check newly inserted value
+puts "Checking values by calling find_nth_from_beginning method."
+value = my_linked_list.find_nth_from_beginning(2)
+puts "BUG: Value at index 2 should be 4 and is #{value}" if value != 4
+value = my_linked_list.find_nth_from_beginning(3)
+puts "BUG: Value at index 3 should be 5 and is #{value}" if value != 5
+value = my_linked_list.find_nth_from_beginning(1)
+puts "BUG: Value at index 1 should be 3 and is #{value}" if value != 3
 
 # # Insert ascending
-# puts "Adding 4 in ascending order."
-# my_linked_list.insert_ascending(4)
-# # check newly inserted value
-# puts "Checking values by calling find_nth_from_beginning method."
-# value = my_linked_list.find_nth_from_beginning(2)
-# puts "BUG: Value at index 2 should be 4 and is #{value}" if value != 4
-# value = my_linked_list.find_nth_from_beginning(3)
-# puts "BUG: Value at index 3 should be 5 and is #{value}" if value != 5
-# value = my_linked_list.find_nth_from_beginning(1)
-# puts "BUG: Value at index 1 should be 3 and is #{value}" if value != 3
+puts "Adding 6 in ascening order."
+my_linked_list.insert_ascending(6)
 
-# # Insert ascending
-# puts "Adding 6 in ascening order."
-# my_linked_list.insert_ascending(6)
-
-# # print all elements
-# puts "Printing elements in the linked list:"
-# my_linked_list.visit
+# print all elements
+puts "Printing elements in the linked list:"
+my_linked_list.visit
 
 # # vaidate length
-# puts "Confirming length of the linked list."
-# my_linked_list_length = my_linked_list.length
-# puts "BUG: Length should be 5 and not #{my_linked_list_length}" if my_linked_list_length != 5
+puts "Confirming length of the linked list."
+my_linked_list_length = my_linked_list.length
+puts "BUG: Length should be 5 and not #{my_linked_list_length}" if my_linked_list_length != 5
 
-# # find min and max
-# puts "Confirming min and max values in the linked list."
-# min = my_linked_list.find_min
-# puts "BUG: Min value should be 1 and not #{min}" if min != 1
-# max = my_linked_list.find_max
-# puts "BUG: Max value should be 5 and not #{max}" if max != 6
 
 # # delete value
-# puts "Deleting node with value 5 from the linked list."
-# my_linked_list.delete(5)
-# # print all elements
-# puts "Printing elements in the linked list:"
-# my_linked_list.visit
+puts "Deleting node with value 5 from the linked list."
+my_linked_list.delete(5)
+# print all elements
+puts "Printing elements in the linked list:"
+my_linked_list.visit
 # # validate length
-# puts "Confirming length of the linked list."
-# my_linked_list_length = my_linked_list.length
-# puts "BUG: Length should be 4 and not #{my_linked_list_length}" if my_linked_list_length != 4
+puts "Confirming length of the linked list."
+my_linked_list_length = my_linked_list.length
+puts "BUG: Length should be 4 and not #{my_linked_list_length}" if my_linked_list_length != 4
 
 # # delete value
 # puts "Deleting node with value 1 from the linked list."
